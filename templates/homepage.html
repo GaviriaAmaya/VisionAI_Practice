@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Vision Base Project</title>
+</head>
+<body>
+  <h1>Google Vision Base Project</h1>
+
+  <p>This Python Flask application demonstrates App Engine Flexible, Google Cloud
+  Storage, Datastore, and the Cloud Vision API.</p>
+  <!-- Form to receive image -->
+  <form action="upload_photo" method="POST" enctype="multipart/form-data">
+    Upload File: <input type="file" name="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  </form>
+  {% for image_entity in image_entities %}
+    <img src="{{image_entity['image_public_url']}}">
+   <p>{{image_entity['blob_name']}} was uploaded {{image_entity['timestamp']}}.</p>
+    <p>Labels: {{image_entity['result']}}</p>
+  {% endfor %}
+</body>
+</html>
